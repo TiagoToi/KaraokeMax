@@ -1,0 +1,34 @@
+﻿<Window x:Class="KaraokeMax.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Karaoke simples" Height="500" Width="380"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Caminhos simples -->
+        <StackPanel Orientation="Vertical" Margin="0,0,0,8">
+            <TextBlock Text="Áudio instrumental (.wav):" />
+            <TextBox x:Name="TxtAudio" Margin="0,4,0,0" />
+            <TextBlock Text="Letra (LRC puro):" Margin="0,8,0,0" />
+            <TextBox x:Name="TxtLrc" Margin="0,4,0,0" />
+        </StackPanel>
+
+        <!-- Controles -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Content="Carregar" Margin="0,0,8,0" Width="90" Click="BtnLoad_Click"/>
+            <Button Content="Play" Margin="0,0,8,0" Width="90" Click="BtnPlay_Click"/>
+            <Button Content="Pause" Width="90" Click="BtnPause_Click"/>
+        </StackPanel>
+
+        <!-- Lista da letra -->
+        <ListBox Grid.Row="2" x:Name="LstLyrics" FontSize="16" />
+
+        <!-- Player invisível -->
+        <MediaElement x:Name="Player" LoadedBehavior="Manual" UnloadedBehavior="Manual" Visibility="Collapsed"/>
+    </Grid>
+</Window>
