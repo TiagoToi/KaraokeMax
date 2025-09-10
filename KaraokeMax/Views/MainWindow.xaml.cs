@@ -27,17 +27,19 @@ namespace KaraokeMax
 
         private void BtnLoad_Click(object sender, RoutedEventArgs e)
         {
-            if (!File.Exists(TxtAudio.Text) || !File.Exists(TxtLrc.Text))
+            String audioPath = TxtAudio.Text.TrimStart('"').TrimEnd('"');
+            String lrcPath = TxtLrc.Text.TrimStart('"').TrimEnd('"');
+            if (!File.Exists(audioPath) || !File.Exists(lrcPath))
             {
                 MessageBox.Show("Informe caminhos válidos para o WAV e o LRC.");
                 return;
             }
 
             // carrega audio
-            Player.Source = new Uri(TxtAudio.Text);
+            Player.Source = new Uri(audioPath);
 
             // carrega e parseia LRC
-            var lrc = File.ReadAllText(TxtLrc.Text);
+            var lrc = File.ReadAllText(lrcPath);
             _lines = ParseLrc(lrc);
             LstLyrics.ItemsSource = _lines; // ToString do item mostrará o texto
             _currentIndex = -1;
