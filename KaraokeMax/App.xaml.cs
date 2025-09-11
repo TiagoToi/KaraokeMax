@@ -1,4 +1,5 @@
-﻿using KaraokeMax.Services;
+﻿using KaraokeMax.Models;
+using KaraokeMax.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,7 +17,7 @@ namespace KaraokeMax
     {
         public async void Application_Startup(object sender, StartupEventArgs e)
         {
-            Console.WriteLine("Application starting up...");
+            /*Console.WriteLine("Application starting up...");
 
             LyricsService svc = new LyricsService();
             // título + artista (opcional)
@@ -28,7 +29,13 @@ namespace KaraokeMax
                 Console.WriteLine("LRC não encontrada.");
 
             MainWindow janela = new MainWindow();
-            janela.Show();
+            janela.Show();*/
+
+            List<ArtistaModel> artistas = Services.Banco_de_Dados.ArtistaService.GetArtistasFromDatabase();
+            foreach (ArtistaModel artista in artistas)
+            {
+                Console.WriteLine($"ID: {artista.id}, Nome: {artista.nome}, Quantidade de Músicas: {artista.quantidadeMusicas}");
+            }
         }
     }
 }
